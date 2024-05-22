@@ -13,7 +13,7 @@ import java.time.LocalTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "TICKET")
+@Table(name = "ticket")
 public class Ticket {
     @EmbeddedId
     private TicketId id;

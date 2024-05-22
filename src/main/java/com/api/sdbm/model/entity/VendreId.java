@@ -12,7 +12,7 @@ import java.util.Objects;
 @Setter
 @Embeddable
 public class VendreId implements java.io.Serializable {
-    private static final long serialVersionUID = 4965372256314162838L;
+    private static final long serialVersionUID = -8851346804221542224L;
     @Column(name = "ANNEE", nullable = false)
     private Integer annee;
 

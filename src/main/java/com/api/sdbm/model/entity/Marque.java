@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "MARQUE")
+@Table(name = "marque")
 public class Marque {
     @Id
     @Column(name = "ID_MARQUE", nullable = false)
@@ -18,7 +18,7 @@ public class Marque {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAYS")
-    private Pay idPays;
+    private Pays idPays;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_FABRICANT")

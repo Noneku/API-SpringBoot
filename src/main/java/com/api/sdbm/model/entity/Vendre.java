@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table(name = "VENDRE")
+@Table(name = "vendre")
 public class Vendre {
     @EmbeddedId
     private VendreId id;
@@ -22,7 +22,7 @@ public class Vendre {
     @Column(name = "QUANTITE")
     private Integer quantite;
 
-    @Column(name = "PRIX_VENTE", precision = 19, scale = 4)
+    @Column(name = "prix_vente", precision = 19, scale = 4)
     private BigDecimal prixVente;
 
 }

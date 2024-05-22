@@ -10,8 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "COULEUR")
-public class Couleur {
+@Table(name = "couleur")
+public class
+Couleur {
     @Id
     @Column(name = "ID_COULEUR", nullable = false)
     private Integer id;

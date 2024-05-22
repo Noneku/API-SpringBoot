@@ -12,7 +12,7 @@ import java.util.Objects;
 @Setter
 @Embeddable
 public class TicketId implements java.io.Serializable {
-    private static final long serialVersionUID = -3750614259758764328L;
+    private static final long serialVersionUID = -1924898680062843673L;
     @Column(name = "ANNEE", nullable = false)
     private Integer annee;
 

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "CONTINENT")
+@Table(name = "continent")
 public class Continent {
     @Id
     @Column(name = "ID_CONTINENT", nullable = false)

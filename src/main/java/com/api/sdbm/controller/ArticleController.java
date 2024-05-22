@@ -12,30 +12,30 @@ import java.util.List;
 @AllArgsConstructor
 public class ArticleController {
 
-    private final ArticleService articleService;
+    private final ArticleService ArticleService;
 
     @GetMapping
     public List<Article> getAllArticles() {
-        return articleService.getAllArticles();
+        return ArticleService.getAllArticles();
     }
 
     @GetMapping("/{id}")
     public Article getArticleById(@PathVariable("id") Integer id) {
-        return articleService.getArticleById(id);
+        return ArticleService.getArticleById(id);
     }
 
     @PostMapping
-    public Article createArticle(@RequestBody Article article) {
-        return articleService.createArticle(article);
+    public Article createArticle(@RequestBody Article Article) {
+        return ArticleService.createArticle(Article);
     }
 
     @PutMapping("/{id}")
-    public Article updateArticle(@PathVariable("id") Integer id, @RequestBody Article article) {
-        return articleService.updateArticle(id, article);
+    public Article updateArticle(@PathVariable("id") Integer id, @RequestBody Article Article) {
+        return ArticleService.updateArticle(id, Article);
     }
 
     @DeleteMapping("/{id}")
     public void deleteArticle(@PathVariable("id") Integer id) {
-        articleService.deleteArticle(id);
+        ArticleService.deleteArticle(id);
     }
 }

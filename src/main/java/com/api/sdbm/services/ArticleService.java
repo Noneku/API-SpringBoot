@@ -13,39 +13,41 @@ import java.util.Optional;
 @Transactional
 public class ArticleService {
 
-    private final ArticleRepository articleRepository;
+    private final ArticleRepository ArticleRepository;
 
     @Autowired
-    public ArticleService(ArticleRepository articleRepository) {
-        this.articleRepository = articleRepository;
+    public ArticleService(ArticleRepository ArticleRepository) {
+        this.ArticleRepository = ArticleRepository;
     }
 
-    public List<Article> getAllArticles() {
-        return articleRepository.findAll();
+    public List<Article>
+
+    getAllArticles() {
+        return ArticleRepository.findAll();
     }
 
     public Article getArticleById(Integer id) {
-        Optional<Article> optionalArticle = articleRepository.findById(id);
+        Optional<Article> optionalArticle = ArticleRepository.findById(id);
         return optionalArticle.orElse(null);
     }
 
-    public Article createArticle(Article article) {
-        return articleRepository.save(article);
+    public Article createArticle(Article Article) {
+        return ArticleRepository.save(Article);
     }
 
     public Article updateArticle(Integer id, Article updatedArticle) {
-        Optional<Article> optionalArticle = articleRepository.findById(id);
+        Optional<Article> optionalArticle = ArticleRepository.findById(id);
         if (optionalArticle.isPresent()) {
-            Article article = optionalArticle.get();
-            // Mise à jour des propriétés de l'article avec les nouvelles valeurs
-            article.setNomArticle(updatedArticle.getNomArticle());
-            article.setPrixAchat(updatedArticle.getPrixAchat());
-            article.setVolume(updatedArticle.getVolume());
-            article.setTitrage(updatedArticle.getTitrage());
-            article.setIdMarque(updatedArticle.getIdMarque());
-            article.setIdCouleur(updatedArticle.getIdCouleur());
-            article.setIdType(updatedArticle.getIdType());
-            return articleRepository.save(article);
+            Article Article = optionalArticle.get();
+            // Mise à jour des propriétés de l'Article avec les nouvelles valeurs
+            Article.setNomArticle(updatedArticle.getNomArticle());
+            Article.setPrixAchat(updatedArticle.getPrixAchat());
+            Article.setVolume(updatedArticle.getVolume());
+            Article.setTitrage(updatedArticle.getTitrage());
+            Article.setIdMarque(updatedArticle.getIdMarque());
+            Article.setIdCouleur(updatedArticle.getIdCouleur());
+            Article.setIdType(updatedArticle.getIdType());
+            return ArticleRepository.save(Article);
         } else {
             // Article non trouvé, retourner null ou lever une exception selon votre logique métier
             return null;
@@ -53,6 +55,6 @@ public class ArticleService {
     }
 
     public void deleteArticle(Integer id) {
-        articleRepository.deleteById(id);
+        ArticleRepository.deleteById(id);
     }
 }

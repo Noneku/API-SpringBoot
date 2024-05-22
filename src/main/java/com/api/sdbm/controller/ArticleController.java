@@ -2,21 +2,17 @@ package com.api.sdbm.controller;
 
 import com.api.sdbm.model.entity.Article;
 import com.api.sdbm.services.ArticleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/articles")
+@AllArgsConstructor
 public class ArticleController {
 
     private final ArticleService articleService;
-
-    @Autowired
-    public ArticleController(ArticleService articleService) {
-        this.articleService = articleService;
-    }
 
     @GetMapping
     public List<Article> getAllArticles() {

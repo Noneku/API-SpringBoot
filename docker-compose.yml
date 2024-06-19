@@ -1,0 +1,40 @@
+services:  # Définit les services qui vont être déployés
+  app:  # Service pour l'application principale
+    image: bieres-app:0.0.1  # Utilise l'image Docker 'bieres-app' avec le tag '0.0.1'
+    ports:
+      - "8080:8080"  # Mappe le port 8080 de l'hôte au port 8080 du conteneur
+    environment:  # Définit les variables d'environnement pour le conteneur
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/bieres_db  # URL de la base de données MySQL
+      SPRING_DATASOURCE_USERNAME: bieres_user  # Nom d'utilisateur de la base de données
+      SPRING_DATASOURCE_PASSWORD: bieres_password  # Mot de passe de la base de données
+    depends_on:  # Indique que ce service dépend du service 'mysql'
+      - mysql
+
+  mysql:  # Service pour la base de données MySQL
+    image: mysql:8.0  # Utilise l'image Docker officielle de MySQL avec le tag '8.0'
+    container_name: mysql_bieres  # Nom du conteneur MySQL
+    restart: always  # Redémarre le conteneur automatiquement en cas d'arrêt
+    environment:  # Définit les variables d'environnement pour MySQL
+      MYSQL_ROOT_PASSWORD: rootpassword  # Mot de passe du super-utilisateur 'root' de MySQL
+      MYSQL_USER: bieres_user  # Nom d'utilisateur de la base de données
+      MYSQL_PASSWORD: bieres_password  # Mot de passe de l'utilisateur de la base de données
+      MYSQL_DATABASE: bieres_db  # Nom de la base de données à créer
+    ports:
+      - "3306:3306"  # Mappe le port 3306 de l'hôte au port 3306 du conteneur MySQL
+    volumes:  # Définit les volumes pour persister les données
+      - mysql_data:/var/lib/mysql  # Monte le volume 'mysql_data' dans le répertoire de données MySQL
+      - ./biere.sql:/docker-entrypoint-initdb.d/biere.sql  # Exécute le script SQL 'biere.sql' à l'initialisation
+
+  phpmyadmin:  # Service pour phpMyAdmin, outil d'administration MySQL
+    image: phpmyadmin/phpmyadmin  # Utilise l'image Docker officielle de phpMyAdmin
+    restart: always  # Redémarre le conteneur automatiquement en cas d'arrêt
+    ports:
+      - "8081:80"  # Mappe le port 8081 de l'hôte au port 80 du conteneur phpMyAdmin
+    environment:  # Définit les variables d'environnement pour phpMyAdmin
+      PMA_HOST: mysql  # Nom d'hôte du serveur MySQL auquel se connecter
+      MYSQL_ROOT_PASSWORD: rootpassword  # Mot de passe du super-utilisateur 'root' de MySQL
+    depends_on:  # Indique que ce service dépend du service 'mysql'
+      - mysql
+
+volumes:  # Définit les volumes Docker pour persister les données
+  mysql_data:  # Volume nommé 'mysql_data' pour persister les données MySQL
